@@ -3,7 +3,7 @@ const pokemonArr = [];
 async function fetchPokeData() {
     const pokemonContainer = document.getElementById("content");
     pokemonContainer.innerHTML = "";
-    for (let i = 1; i <= 151; i++) {
+    for (let i = 387; i <= 493; i++) {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
       const pokemonData = await response.json();
       pokemonArr.push(pokemonData);
@@ -15,7 +15,7 @@ async function fetchPokeData() {
 
 function pokeCardTemplate(pokemon) {
     const types = pokemon.types.map(typeInfo => typeInfo.type.name);
-    const typeClass = types.length > 0 ? `type-${types[0]}` : '';
+    const typeClass = types.length > 1 ? `type-${types[1]}` : `type-${types[0]}`;
 
     return `
       <div class="poke-card ${typeClass}">

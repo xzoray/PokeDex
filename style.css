@@ -1,7 +1,11 @@
 body {
     margin: 0;
     font-family: 'Courier New', Courier, monospace;
-    background-color: rgb(230, 0, 0);
+    background-image: url(img/pokeball.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 header {
@@ -14,13 +18,16 @@ header {
     padding: 0 10px;
     font-size: 20px;
     font-weight: 800;
+    margin-bottom: 5px;
+    position: sticky;
+    top: 0;
 }
 
 #content {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 5px;
+    gap: 1rem;
+    margin: 8px;
 }
 
 .poke-card {
@@ -35,7 +42,9 @@ header {
 
 .poke-card:hover {
     scale: 1.05;
-    background-color: aqua;
+    border: 2px solid rgb(109, 255, 255);
+    filter: brightness(1.25);
+
 }
 
 img {
@@ -48,4 +57,8 @@ input {
     height: 24px;
     text-align: center;
     border: 5px solid rgb(253, 253, 63);
+}
+
+.hidden {
+    display: none;
 }
