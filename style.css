@@ -32,6 +32,7 @@ header {
 
 .poke-card {
     text-align: center;
+    height: 200px;
     width: 150px;
     border-radius: 20px;
     border: 2px solid rgb(0, 0, 74);
@@ -49,9 +50,8 @@ header {
 
 }
 
-img {
-    max-width: 100%;
-    border-radius: 8px;
+.sprites {
+    height: 65px;
 }
 
 .types {

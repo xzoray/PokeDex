@@ -20,8 +20,8 @@ function pokeCardTemplate(pokemon) {
 
     return `
       <div onclick="showPokemon(${pokemon.id})" class="poke-card ${typeClass}">
-        <img src="${pokemon.sprites.other.home.front_default}" alt="${pokemon.name}">
-        <h3>${pokemon.id}. ${pokemon.name.toUpperCase()}</h3>
+        <img class="sprites" src="${pokemon.sprites.versions["generation-v"]["black-white"].animated.front_default}" alt="${pokemon.name}">
+        <h3> ${pokemon.name.toUpperCase()}</h3>
         <p class="types">${types.join(' ')}</p>
       </div>
     `;
@@ -44,6 +44,3 @@ function createPokemonOverlay(pokemonIndex) {
                             </div>
                           </div>`
 }
-
-
-//pokemon.sprites.versions["generation-v"]["back-white"].animated
