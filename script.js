@@ -38,9 +38,12 @@ function toggleOverlay() {
 
 function createPokemonOverlay(pokemonIndex) {
     overlay.innerHTML = ` <div class="overlayContent">
-                            <button class="toggleBtn" onclick="toggleOverlay()">X</button>
                             <div class="pokeDesc">
-                              <img class="overlayImg" src="${pokemonArr[pokemonIndex].sprites.front_default}" alt="">
+                              <img class="overlayImg" src="${pokemonArr[pokemonIndex].sprites.front_shiny}" alt="">
+                              <h6>${pokemonArr[pokemonIndex].name}</h6>
                             </div>
                           </div>`
 }
+
+
+//pokemon.sprites.versions["generation-v"]["back-white"].animated
