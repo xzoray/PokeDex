@@ -23,6 +23,7 @@ header {
     z-index: 1;
 }
 
+
 #content {
     display: flex;
     flex-wrap: wrap;
@@ -51,11 +52,12 @@ header {
 }
 
 .sprites {
-    height: 65px;
+    height: 55px;
+    object-fit: cover;
 }
 
 .types {
-    border: 1px solid black;
+    width: 30px;
 }
 
 input {

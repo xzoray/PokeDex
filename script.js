@@ -15,14 +15,17 @@ async function fetchPokeData() {
 }
 
 function pokeCardTemplate(pokemon) {
-    const types = pokemon.types.map(typeInfo => typeInfo.type.name);
-    const typeClass = pokemon.types.length > 1 ? `type-${pokemon.types[1].type.name}` : `type-${pokemon.types[0].type.name}`;
+    const types = pokemon.types.length > 1 ? pokemon.types[1].type.name : "";
+    const typeClass = `type-${pokemon.types[0].type.name}`;
 
     return `
       <div onclick="showPokemon(${pokemon.id})" class="poke-card ${typeClass}">
         <img class="sprites" src="${pokemon.sprites.versions["generation-v"]["black-white"].animated.front_default}" alt="${pokemon.name}">
         <h3> ${pokemon.name.toUpperCase()}</h3>
-        <p class="types">${types.join(' ')}</p>
+        <div class="typesContainer">
+          <img class="types" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${pokemon.types[0].type.name}.svg" >
+          <img class="types" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${types}.svg" >
+        </div>
       </div>
     `;
 }
