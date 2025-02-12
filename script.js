@@ -1,4 +1,5 @@
 const pokemonArr = [];
+
 let overlay = document.getElementById("overlay");
 
 async function fetchPokeData() {
@@ -15,16 +16,22 @@ async function fetchPokeData() {
 }
 
 function pokeCardTemplate(pokemon) {
-    const types = pokemon.types.length > 1 ? pokemon.types[1].type.name : "";
-    const typeClass = `type-${pokemon.types[0].type.name}`;
+    const primaryType = pokemon.types[0].type.name;
+
+    // Optionaler zweiter Typ
+    const secondaryTypeHTML = pokemon.types.length > 1 
+        ? `<img class="types2" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${pokemon.types[1].type.name}.svg" >`
+        : '';
+
+    const typeClass = `type-${primaryType}`;
 
     return `
       <div onclick="showPokemon(${pokemon.id})" class="poke-card ${typeClass}">
         <img class="sprites" src="${pokemon.sprites.versions["generation-v"]["black-white"].animated.front_default}" alt="${pokemon.name}">
-        <h3> ${pokemon.name.toUpperCase()}</h3>
+        <h3>${pokemon.name.toUpperCase()}</h3>
         <div class="typesContainer">
-          <img class="types" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${pokemon.types[0].type.name}.svg" >
-          <img class="types" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${types}.svg" >
+          <img class="types1" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${primaryType}.svg">
+          ${secondaryTypeHTML}
         </div>
       </div>
     `;
@@ -42,8 +49,8 @@ function toggleOverlay() {
 function createPokemonOverlay(pokemonIndex) {
     overlay.innerHTML = ` <div class="overlayContent">
                             <div class="pokeDesc">
-                              <img class="overlayImg" src="${pokemonArr[pokemonIndex].sprites.front_shiny}" alt="">
-                              <h6>${pokemonArr[pokemonIndex].name}</h6>
+                              <img class="overlayImg" src="${pokemonArr[pokemonIndex].sprites.versions["generation-v"]["black-white"].animated.front_shiny}" alt="">
+                              <h6>${pokemonArr[pokemonIndex].name.toUpperCase()}</h6>
                             </div>
                           </div>`
 }

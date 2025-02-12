@@ -48,15 +48,19 @@ header {
     border: 2px solid rgb(109, 255, 255);
     filter: brightness(1.25);
     box-shadow: none;
-
 }
 
 .sprites {
     height: 55px;
     object-fit: cover;
+    padding-top: 20px;
 }
 
-.types {
+.types1 {
+    width: 30px;
+}
+
+.types2 {
     width: 30px;
 }
 
@@ -91,15 +95,22 @@ input {
 .pokeDesc {
     width: 400px;
     height: 600px;
-    background-color: white;
+    background-image: url(img/pokemon-bg.jpg);
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
 .overlayImg {
-    height: 180px;
+    padding-top: 40px;
+    height: 100px;
+}
+
+h6 {
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(231, 0, 0);
+    border-bottom: 3px solid;
 }
 
 .hidden {
