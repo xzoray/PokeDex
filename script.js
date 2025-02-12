@@ -2,23 +2,28 @@ const pokemonArr = [];
 
 let overlay = document.getElementById("overlay");
 
+function init() {
+  fetchPokeData();
+}
+
 async function fetchPokeData() {
-    const pokemonContainer = document.getElementById("content");
-    pokemonContainer.innerHTML = "";
-    for (let i = 1; i <= 151; i++) {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-      const pokemonData = await response.json();
-      pokemonArr.push(pokemonData);
-    }
-    pokemonArr.forEach(pokemon => {
-        pokemonContainer.innerHTML += pokeCardTemplate(pokemon);
-    })
+  const pokemonContainer = document.getElementById("content");
+  loadingSpinner();
+  const promises = [];
+  for (let i = 1; i <= 151; i++) {
+      promises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}`).then(res => res.json()));
+  }
+  const results = await Promise.all(promises);
+  pokemonArr.push(...results);
+  pokemonContainer.innerHTML = "";
+  pokemonArr.forEach(pokemon => {
+      pokemonContainer.innerHTML += pokeCardTemplate(pokemon);
+  });
 }
 
 function pokeCardTemplate(pokemon) {
     const primaryType = pokemon.types[0].type.name;
 
-    // Optionaler zweiter Typ
     const secondaryTypeHTML = pokemon.types.length > 1 
         ? `<img class="types2" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${pokemon.types[1].type.name}.svg" >`
         : '';
@@ -53,4 +58,28 @@ function createPokemonOverlay(pokemonIndex) {
                               <h6>${pokemonArr[pokemonIndex].name.toUpperCase()}</h6>
                             </div>
                           </div>`
+}
+
+function loadingSpinner() {
+  const pokemonContainer = document.getElementById("content");
+  pokemonContainer.innerHTML = `<svg
+                                    width="100"
+                                    height="100"
+                                    viewBox="0 0 100 100"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <circle cx="50" cy="50" r="45" fill="white" stroke="black" stroke-width="5" />
+                                    <path d="M5 50h90" stroke="black" stroke-width="5" />
+                                    <path d="M5 50a45 45 0 0 1 90 0" fill="red" stroke="black" stroke-width="5" />
+                                    <circle cx="50" cy="50" r="10" fill="white" stroke="black" stroke-width="5" />
+                                    <animateTransform
+                                        attributeType="XML"
+                                        attributeName="transform"
+                                        type="rotate"
+                                        from="0 50 50"
+                                        to="360 50 50"
+                                        dur="1s"
+                                        repeatCount="indefinite"
+                                    />
+                                </svg>`
 }
