@@ -1,7 +1,7 @@
 const pokemonArr = [];
 
 const pokemonContainer = document.getElementById("content");
-let overlay = document.getElementById("overlay");
+const overlay = document.getElementById("overlay");
 const loadBtn = document.getElementById("loadButton");
 const spinner = document.getElementById("loadingSpinner");
 let currentIndex = 0;
@@ -11,25 +11,25 @@ function init() {
 }
 
 async function fetchPokeData() {
-  loadingSpinner();
   const promises = [];
   for (let i = 1; i <= 151; i++) {
       promises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}`).then(res => res.json()));
   }
   const results = await Promise.all(promises);
   pokemonArr.push(...results);
-  pokemonContainer.innerHTML = "";
   renderPokemon();
 }
 
 function renderPokemon() {
-  loadBtn.style.display = "none";
+  loadBtn.classList.add("hidden");
+  loadingSpinner();
   setTimeout(() => {
-    const nextPokemon = pokemonArr.slice(currentIndex, currentIndex + 30);
+    pokemonContainer.innerHTML = "";
+    const nextPokemon = pokemonArr.slice(0, currentIndex + 30);
     pokemonContainer.innerHTML += nextPokemon.map(pokemon => pokeCardTemplate(pokemon)).join("");
     currentIndex += 30;
   }, 3000); 
-  loadBtn.style.display = "block";
+  loadBtn.classList.remove("hidden");
 }
 
 function loadMorePokemon() {
