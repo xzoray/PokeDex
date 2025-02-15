@@ -2,6 +2,9 @@ const pokemonArr = [];
 
 const pokemonContainer = document.getElementById("content");
 let overlay = document.getElementById("overlay");
+const loadBtn = document.getElementById("loadButton");
+const spinner = document.getElementById("loadingSpinner");
+let currentIndex = 0;
 
 function init() {
   fetchPokeData();
@@ -16,9 +19,21 @@ async function fetchPokeData() {
   const results = await Promise.all(promises);
   pokemonArr.push(...results);
   pokemonContainer.innerHTML = "";
-  pokemonArr.forEach(pokemon => {
-      pokemonContainer.innerHTML += pokeCardTemplate(pokemon);
-  });
+  renderPokemon();
+}
+
+function renderPokemon() {
+  loadBtn.style.display = "none";
+  setTimeout(() => {
+    const nextPokemon = pokemonArr.slice(currentIndex, currentIndex + 30);
+    pokemonContainer.innerHTML += nextPokemon.map(pokemon => pokeCardTemplate(pokemon)).join("");
+    currentIndex += 30;
+  }, 3000); 
+  loadBtn.style.display = "block";
+}
+
+function loadMorePokemon() {
+  renderPokemon();
 }
 
 function pokeCardTemplate(pokemon) {
@@ -68,7 +83,7 @@ function createPokemonOverlay(pokemonIndex) {
 }
 
 function loadingSpinner() {
-  pokemonContainer.innerHTML = `<div class="spinner-container">
+  pokemonContainer.innerHTML = `<div class="spinner-container" id="loadingSpinner">
                                   <svg
                                       width="100"
                                       height="100"
