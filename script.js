@@ -69,7 +69,6 @@ function createPokemonOverlay(pokemonIndex) {
   const secondaryTypeHTML = pokemonArr[pokemonIndex].types.length > 1 ? 
       `<img class="types2" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${pokemonArr[pokemonIndex].types[1].type.name}.svg" >`
       : '';
-
     overlay.innerHTML = ` <div class="overlayContent">
                             <div class="pokeDesc">
                               <img class="overlayImg" src="${pokemonArr[pokemonIndex].sprites.other["official-artwork"].front_default}" alt="">
@@ -78,6 +77,10 @@ function createPokemonOverlay(pokemonIndex) {
                                 <img class="types1" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${primaryType}.svg">
                                 ${secondaryTypeHTML}
                               </div>
+                                <div id="dataNav">
+                                  <a class="traits">traits</a>
+                                  <a class="stats">stats</a>
+                                </div>
                             </div>
                           </div>`
 }

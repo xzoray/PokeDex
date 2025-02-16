@@ -114,6 +114,14 @@ input {
     object-fit: cover;
 }
 
+#dataNav {
+    display: flex;
+    justify-content: space-around !important;
+    background-color: aqua;
+}
+
+#dataNav
+
 h6 {
     font-size: 20px;
     font-weight: 600;
