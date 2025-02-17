@@ -21,7 +21,7 @@ async function fetchPokeData() {
 }
 
 function renderPokemon() {
-  loadBtn.classList.add("hidden");
+  loadBtn.style.display = "none";
   loadingSpinner();
   setTimeout(() => {
     pokemonContainer.innerHTML = "";
@@ -29,7 +29,7 @@ function renderPokemon() {
     pokemonContainer.innerHTML += nextPokemon.map(pokemon => pokeCardTemplate(pokemon)).join("");
     currentIndex += 30;
   }, 3000); 
-  loadBtn.classList.remove("hidden");
+  loadBtn.style.display = "block";;
 }
 
 function loadMorePokemon() {
@@ -80,6 +80,16 @@ function createPokemonOverlay(pokemonIndex) {
                                 <div id="dataNav">
                                   <a class="traits">traits</a>
                                   <a class="stats">stats</a>
+                                </div>
+                                <div id="pokeData">
+                                  <div class="pokeInfoQuestion">
+                                    <p>Height:</p>
+                                    <p>Weight:</p>
+                                  </div>
+                                  <div class="pokeInfoAnswer">
+                                    <p>${pokemonArr[pokemonIndex].height} cm</p>
+                                    <p>${pokemonArr[pokemonIndex].weight} g</p>
+                                  </div>
                                 </div>
                             </div>
                           </div>`
