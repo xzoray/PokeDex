@@ -67,8 +67,10 @@ function toggleOverlay() {
 function createPokemonOverlay(pokemonIndex) {
   const primaryType = pokemonArr[pokemonIndex].types[0].type.name;
   const secondaryTypeHTML = pokemonArr[pokemonIndex].types.length > 1 ? 
-      `<img class="types2" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${pokemonArr[pokemonIndex].types[1].type.name}.svg" >`
-      : '';
+      `<img class="types2" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${pokemonArr[pokemonIndex].types[1].type.name}.svg" >` : '';
+  const pokemonAbility1 = `<p>${pokemonArr[pokemonIndex].abilities[0].ability.name}</p`
+  const pokemonAbility2 = pokemonArr[pokemonIndex].abilities > 1 ? `<p>${pokemonArr[pokemonIndex].abilities[1].ability.name}</p` : ``;
+
     overlay.innerHTML = ` <div class="overlayContent">
                             <div class="pokeDesc">
                               <img class="overlayImg" src="${pokemonArr[pokemonIndex].sprites.other["official-artwork"].front_default}" alt="">
@@ -85,10 +87,13 @@ function createPokemonOverlay(pokemonIndex) {
                                   <div class="pokeInfoQuestion">
                                     <p>Height:</p>
                                     <p>Weight:</p>
+                                    <p>Ability:</p>
                                   </div>
                                   <div class="pokeInfoAnswer">
                                     <p>${pokemonArr[pokemonIndex].height} cm</p>
                                     <p>${pokemonArr[pokemonIndex].weight} g</p>
+                                    ${pokemonAbility1}
+                                    ${pokemonAbility2}
                                   </div>
                                 </div>
                             </div>
