@@ -4,6 +4,7 @@ const pokemonContainer = document.getElementById("content");
 const overlay = document.getElementById("overlay");
 const loadBtn = document.getElementById("loadButton");
 const spinner = document.getElementById("loadingSpinner");
+const searchInput = document.getElementById("searchInput");
 let currentIndex = 0;
 
 function init() {
@@ -87,11 +88,13 @@ function createPokemonOverlay(pokemonIndex) {
                                   <div class="pokeInfoQuestion">
                                     <p>Height:</p>
                                     <p>Weight:</p>
+                                    <p>Base Experience:</p>
                                     <p>Ability:</p>
                                   </div>
                                   <div class="pokeInfoAnswer">
                                     <p>${pokemonArr[pokemonIndex].height} cm</p>
-                                    <p>${pokemonArr[pokemonIndex].weight} g</p>
+                                    <p>${pokemonArr[pokemonIndex].weight} kg</p>
+                                    <p>${pokemonArr[pokemonIndex].base_experience} EP</p>
                                     ${pokemonAbility1}
                                     ${pokemonAbility2}
                                   </div>
@@ -123,4 +126,111 @@ function loadingSpinner() {
                                       />
                                   </svg>
                                 </div>`;
+}
+
+document.getElementById("searchInput").addEventListener("input", debounce(function () {
+  const searchValue = this.value.toLowerCase();
+  
+  if (searchValue.length < 3) {
+      renderFilteredPokemon([]);
+      return;
+  }
+
+  searchPokemon(searchValue);
+}, 300));
+
+function searchPokemon(searchValue) {
+  const filteredPokemon = pokemonArr.filter(pokemon => 
+      pokemon.name.toLowerCase().startsWith(searchValue)
+  );
+
+  renderFilteredPokemon(filteredPokemon);
+}
+
+function renderFilteredPokemon(pokemonList) {
+  const pokemonContainer = document.getElementById("content");
+  pokemonContainer.innerHTML = "";
+
+  if (pokemonList.length === 0) {
+      pokemonContainer.innerHTML = "<p>Keine passenden Pokémon gefunden.</p>";
+      return;
+  }
+
+  pokemonList.forEach(pokemon => {
+      const pokemonCard = document.createElement("div");
+      pokemonCard.classList.add("poke-card");
+      pokemonCard.innerHTML = `
+          <img class="sprites" src="${pokemon.sprites.versions["generation-v"]["black-white"].animated.front_default}" alt="${pokemon.name}">
+          <h3>${pokemon.name.toUpperCase()}</h3>
+      `;
+      
+      pokemonCard.addEventListener("click", function () {
+          showPokemon(pokemon.id);
+      });
+
+      pokemonContainer.appendChild(pokemonCard);
+  });
+}
+
+document.getElementById("searchInput").addEventListener("input", debounce(function () {
+  const searchValue = this.value.toLowerCase();
+  
+  if (searchValue.length < 3) {
+      renderFilteredPokemon([]);
+      return;
+  }
+
+  searchPokemon(searchValue);
+}, 300));
+
+function searchPokemon(searchValue) {
+  const filteredPokemon = pokemonArr.filter(pokemon => 
+      pokemon.name.toLowerCase().startsWith(searchValue)
+  );
+
+  renderFilteredPokemon(filteredPokemon);
+}
+
+function renderFilteredPokemon(pokemonList) {
+  const pokemonContainer = document.getElementById("content");
+  pokemonContainer.innerHTML = "";
+
+  if (pokemonList.length === 0) {
+      pokemonContainer.innerHTML = "<p>Keine passenden Pokémon gefunden.</p>";
+      return;
+  }
+
+  pokemonList.forEach(pokemon => {
+      const pokemonCard = document.createElement("div");
+      pokemonCard.classList.add("poke-card");
+      const primaryType = pokemon.types[0].type.name;
+      const secondaryTypeHTML = pokemon.types.length > 1 ? 
+        `<img class="types2" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${pokemon.types[1].type.name}.svg" >`
+        : '';
+    const typeClass = `type-${primaryType}`;
+      pokemonCard.innerHTML = `
+        <div onclick="showPokemon(${pokemon.id})" class="poke-card ${typeClass}">
+          <img class="sprites" src="${pokemon.sprites.versions["generation-v"]["black-white"].animated.front_default}" alt="${pokemon.name}">
+          <h3>${pokemon.name.toUpperCase()}</h3>
+          <div class="typesContainer">
+            <img class="types1" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${primaryType}.svg">
+            ${secondaryTypeHTML}
+          </div>
+        </div>
+      `;
+      
+      pokemonCard.addEventListener("click", function () {
+          showPokemon(pokemon.id);
+      });
+
+      pokemonContainer.appendChild(pokemonCard);
+  });
+}
+
+function debounce(func, delay) {
+  let timer;
+  return function () {
+      clearTimeout(timer);
+      timer = setTimeout(() => func.apply(this, arguments), delay);
+  };
 }
