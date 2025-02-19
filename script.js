@@ -65,43 +65,43 @@ function toggleOverlay() {
     overlay.classList.toggle("hidden")
 }
 
-function createPokemonOverlay(pokemonIndex) {
-  const primaryType = pokemonArr[pokemonIndex].types[0].type.name;
-  const secondaryTypeHTML = pokemonArr[pokemonIndex].types.length > 1 ? 
-      `<img class="types2" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${pokemonArr[pokemonIndex].types[1].type.name}.svg" >` : '';
-  const pokemonAbility1 = `<p>${pokemonArr[pokemonIndex].abilities[0].ability.name}</p`
-  const pokemonAbility2 = pokemonArr[pokemonIndex].abilities > 1 ? `<p>${pokemonArr[pokemonIndex].abilities[1].ability.name}</p` : ``;
+// function createPokemonOverlay(pokemonIndex) {
+//   const primaryType = pokemonArr[pokemonIndex].types[0].type.name;
+//   const secondaryTypeHTML = pokemonArr[pokemonIndex].types.length > 1 ? 
+//       `<img class="types2" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${pokemonArr[pokemonIndex].types[1].type.name}.svg" >` : '';
+//   const pokemonAbility1 = `<p>${pokemonArr[pokemonIndex].abilities[0].ability.name}</p`
+//   const pokemonAbility2 = pokemonArr[pokemonIndex].abilities > 1 ? `<p>${pokemonArr[pokemonIndex].abilities[1].ability.name}</p` : ``;
 
-    overlay.innerHTML = ` <div class="overlayContent">
-                            <div class="pokeDesc">
-                              <img class="overlayImg" src="${pokemonArr[pokemonIndex].sprites.other["official-artwork"].front_default}" alt="">
-                              <h6>${pokemonArr[pokemonIndex].name.toUpperCase()}</h6>
-                              <div class="typesContainer">
-                                <img class="types1" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${primaryType}.svg">
-                                ${secondaryTypeHTML}
-                              </div>
-                                <div id="dataNav">
-                                  <a class="traits">traits</a>
-                                  <a class="stats">stats</a>
-                                </div>
-                                <div id="pokeData">
-                                  <div class="pokeInfoQuestion">
-                                    <p>Height:</p>
-                                    <p>Weight:</p>
-                                    <p>Base Experience:</p>
-                                    <p>Ability:</p>
-                                  </div>
-                                  <div class="pokeInfoAnswer">
-                                    <p>${pokemonArr[pokemonIndex].height} cm</p>
-                                    <p>${pokemonArr[pokemonIndex].weight} kg</p>
-                                    <p>${pokemonArr[pokemonIndex].base_experience} EP</p>
-                                    ${pokemonAbility1}
-                                    ${pokemonAbility2}
-                                  </div>
-                                </div>
-                            </div>
-                          </div>`
-}
+//     overlay.innerHTML = ` <div class="overlayContent">
+//                             <div class="pokeDesc">
+//                               <img class="overlayImg" src="${pokemonArr[pokemonIndex].sprites.other["official-artwork"].front_default}" alt="">
+//                               <h6>${pokemonArr[pokemonIndex].name.toUpperCase()}</h6>
+//                               <div class="typesContainer">
+//                                 <img class="types1" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${primaryType}.svg">
+//                                 ${secondaryTypeHTML}
+//                               </div>
+//                                 <div id="dataNav">
+//                                   <a class="traits">traits</a>
+//                                   <a class="stats">stats</a>
+//                                 </div>
+//                                 <div id="pokeData">
+//                                   <div class="pokeInfoQuestion">
+//                                     <p>Height:</p>
+//                                     <p>Weight:</p>
+//                                     <p>Base Experience:</p>
+//                                     <p>Ability:</p>
+//                                   </div>
+//                                   <div class="pokeInfoAnswer">
+//                                     <p>${pokemonArr[pokemonIndex].height} cm</p>
+//                                     <p>${pokemonArr[pokemonIndex].weight} kg</p>
+//                                     <p>${pokemonArr[pokemonIndex].base_experience} EP</p>
+//                                     ${pokemonAbility1}
+//                                     ${pokemonAbility2}
+//                                   </div>
+//                                 </div>
+//                             </div>
+//                           </div>`
+// }
 
 function loadingSpinner() {
   pokemonContainer.innerHTML = `<div class="spinner-container" id="loadingSpinner">
@@ -152,7 +152,7 @@ function renderFilteredPokemon(pokemonList) {
   pokemonContainer.innerHTML = "";
 
   if (pokemonList.length === 0) {
-      pokemonContainer.innerHTML = "<p>Keine passenden Pokémon gefunden.</p>";
+      pokemonContainer.innerHTML = `<p class="failedSearch">Keine Pokémon gefunden.</p>`;
       return;
   }
 
@@ -188,3 +188,92 @@ function debounce(func, delay) {
       timer = setTimeout(() => func.apply(this, arguments), delay);
   };
 }
+
+// function getCharts(index) {
+//   const ctx = document.getElementById('myChart').getContext('2d');
+
+// new Chart(ctx, {
+//   type: 'bar',
+//   data: {
+//     labels: ['HP', 'Attack', 'Defense', 'Sp-Attack', 'Sp-Defense', 'Speed'],
+//     datasets: [{
+//       label: 'Base Stats',
+//       data: [12, 19, 3, 5, 2, 3],
+//       backgroundColor: [
+//         'rgba(255, 99, 132, 0.2)',
+//         'rgba(54, 162, 235, 0.2)',
+//         'rgba(255, 206, 86, 0.2)',
+//         'rgba(75, 192, 192, 0.2)',
+//         'rgba(153, 102, 255, 0.2)',
+//         'rgba(255, 159, 64, 0.2)'
+//       ],
+//       borderColor: [
+//         'rgba(255, 99, 132, 1)',
+//         'rgba(54, 162, 235, 1)',
+//         'rgba(255, 206, 86, 1)',
+//         'rgba(75, 192, 192, 1)',
+//         'rgba(153, 102, 255, 1)',
+//         'rgba(255, 159, 64, 1)'
+//       ],
+//       borderWidth: 1
+//     }]
+//   },
+//   options: {
+//     responsive: true,
+//     plugins: {
+//       legend: {
+//         display: true,
+//         position: 'top'
+//       }
+//     },
+//     scales: {
+//       y: {
+//         beginAtZero: true,
+//         ticks: {
+//           stepSize: 5
+//         }
+//       }
+//     }
+//   }
+// });
+// }
+
+function createPokemonOverlay(pokemonIndex) {
+  const primaryType = pokemonArr[pokemonIndex].types[0].type.name;
+  const secondaryTypeHTML = pokemonArr[pokemonIndex].types.length > 1 ? `<img class="types2" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${pokemonArr[pokemonIndex].types[1].type.name}.svg" >` : '';
+  
+    overlay.innerHTML = ` <div class="overlayContent">
+                            <div class="pokeDesc">
+                              <img class="overlayImg" src="${pokemonArr[pokemonIndex].sprites.other["official-artwork"].front_default}" alt="">
+                              <h6>${pokemonArr[pokemonIndex].name.toUpperCase()}</h6>
+                              <div class="typesContainer">
+                                <img class="types1" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${primaryType}.svg">
+                                ${secondaryTypeHTML}
+                              </div>
+                                <div id="dataNav">
+                                  <a class="traits">traits</a>
+                                  <a class="stats">stats</a>
+                                </div>
+                                <div id="pokeData">
+                                  <div class="pokeInfoQuestion">
+                                    <p>HP:</p>
+                                    <p>Attack:</p>
+                                    <p>Defense:</p>
+                                    <p>Sp-Attack:</p>
+                                    <p>Sp-Defense:</p>
+                                    <p>Speed:</p>
+                                  </div>
+                                  <div class="pokeInfoAnswer">
+                                    <p>${pokemonArr[pokemonIndex].stats[0].base_stat}</p>
+                                    <p>${pokemonArr[pokemonIndex].stats[1].base_stat}</p>
+                                    <p>${pokemonArr[pokemonIndex].stats[2].base_stat}</p>
+                                    <p>${pokemonArr[pokemonIndex].stats[3].base_stat}</p>
+                                    <p>${pokemonArr[pokemonIndex].stats[4].base_stat}</p>
+                                    <p>${pokemonArr[pokemonIndex].stats[5].base_stat}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>`
+}
+
+console.log(pokemonArr)

@@ -154,6 +154,12 @@ h6 {
     margin-block-end: 1em;
 }
 
+.failedSearch {
+    color: white;
+    background: black;
+    text-align: center;
+}
+
 .hidden {
     display: none;
 }
