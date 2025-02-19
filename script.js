@@ -58,7 +58,7 @@ function pokeCardTemplate(pokemon) {
 
 function showPokemon(pokemonId) {
     toggleOverlay()
-    createPokemonOverlay1(pokemonId)
+    createPokemonOverlay2(pokemonId)
 }
 
 function toggleOverlay() {

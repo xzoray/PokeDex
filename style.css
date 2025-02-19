@@ -100,8 +100,8 @@ input {
 }
 
 .pokeDesc {
-    width: 400px;
-    height: 600px;
+    width: 280px;
+    height: 595px;
     background-image: url(img/pokemon-bg.jpg);
     display: flex;
     align-items: center;
@@ -116,7 +116,7 @@ input {
 
 #dataNav {
     margin-top: 10px;
-    width: 80%;
+    width: 250px;
     background-color: rgb(0, 161, 161);
     text-align: center;
     font-size: 18px;
@@ -127,7 +127,7 @@ input {
 #pokeData {
     margin-top: 20px;
     height: 240px;
-    width: 300px;
+    width: 220px;
     background-color: white;
     border: 5px solid orange;
     padding: 10px;
