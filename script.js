@@ -77,7 +77,7 @@ function createPokemonOverlay1(pokemonIndex) {
   const pokemonAbility2 = pokemonArr[pokemonIndex].abilities > 1 ? `<p>${pokemonArr[pokemonIndex].abilities[1].ability.name}</p` : ``;
 
     overlay.innerHTML = ` <div class="overlayContent">
-                            <div class="pokeDesc" onclick="eventProtection(${event})">
+                            <div class="pokeDesc" onclick="eventProtection(event)">
                               <img class="overlayImg" src="${pokemonArr[pokemonIndex].sprites.other["official-artwork"].front_default}" alt="">
                               <h6>${pokemonArr[pokemonIndex].name.toUpperCase()}</h6>
                               <div class="typesContainer">
@@ -85,7 +85,7 @@ function createPokemonOverlay1(pokemonIndex) {
                                 ${secondaryTypeHTML}
                               </div>
                                 <div id="dataNav">
-                                  <a class="traits" >traits</a>
+                                  <a class="traits">traits</a>
                                   <a class="stats" onclick="createPokemonOverlay2(${pokemonIndex})">stats</a>
                                 </div>
                                 <div id="pokeData">
@@ -247,7 +247,7 @@ function createPokemonOverlay2(pokemonIndex) {
   const secondaryTypeHTML = pokemonArr[pokemonIndex].types.length > 1 ? `<img class="types2" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${pokemonArr[pokemonIndex].types[1].type.name}.svg" >` : '';
   
     overlay.innerHTML = ` <div class="overlayContent">
-                            <div class="pokeDesc">
+                            <div class="pokeDesc" onclick="eventProtection(event)">
                               <img class="overlayImg" src="${pokemonArr[pokemonIndex].sprites.other["official-artwork"].front_default}" alt="">
                               <h6>${pokemonArr[pokemonIndex].name.toUpperCase()}</h6>
                               <div class="typesContainer">
