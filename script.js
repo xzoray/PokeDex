@@ -107,6 +107,44 @@ function createPokemonOverlay1(pokemonIndex) {
                           </div>`
 }
 
+function createPokemonOverlay2(pokemonIndex) {
+  const primaryType = pokemonArr[pokemonIndex].types[0].type.name;
+  const secondaryTypeHTML = pokemonArr[pokemonIndex].types.length > 1 ? `<img class="types2" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${pokemonArr[pokemonIndex].types[1].type.name}.svg" >` : '';
+  
+    overlay.innerHTML = ` <div class="overlayContent">
+                            <div class="pokeDesc" onclick="eventProtection(event)">
+                              <img class="overlayImg" src="${pokemonArr[pokemonIndex].sprites.other["official-artwork"].front_default}" alt="">
+                              <h6>${pokemonArr[pokemonIndex].name.toUpperCase()}</h6>
+                              <div class="typesContainer">
+                                <img class="types1" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${primaryType}.svg">
+                                ${secondaryTypeHTML}
+                              </div>
+                                <div id="dataNav">
+                                  <a onclick="createPokemonOverlay1(${pokemonIndex})" class="traits">traits</a>
+                                  <a class="stats">stats</a>
+                                </div>
+                                <div id="pokeData">
+                                  <div class="pokeInfoQuestion">
+                                    <p>HP:</p>
+                                    <p>Attack:</p>
+                                    <p>Defense:</p>
+                                    <p>Sp-Attack:</p>
+                                    <p>Sp-Defense:</p>
+                                    <p>Speed:</p>
+                                  </div>
+                                  <div class="pokeInfoAnswer">
+                                    <p>${pokemonArr[pokemonIndex].stats[0].base_stat}</p>
+                                    <p>${pokemonArr[pokemonIndex].stats[1].base_stat}</p>
+                                    <p>${pokemonArr[pokemonIndex].stats[2].base_stat}</p>
+                                    <p>${pokemonArr[pokemonIndex].stats[3].base_stat}</p>
+                                    <p>${pokemonArr[pokemonIndex].stats[4].base_stat}</p>
+                                    <p>${pokemonArr[pokemonIndex].stats[5].base_stat}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>`
+}
+
 function loadingSpinner() {
   pokemonContainer.innerHTML = `<div class="spinner-container" id="loadingSpinner">
                                   <svg
@@ -241,43 +279,5 @@ function debounce(func, delay) {
 //   }
 // });
 // }
-
-function createPokemonOverlay2(pokemonIndex) {
-  const primaryType = pokemonArr[pokemonIndex].types[0].type.name;
-  const secondaryTypeHTML = pokemonArr[pokemonIndex].types.length > 1 ? `<img class="types2" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${pokemonArr[pokemonIndex].types[1].type.name}.svg" >` : '';
-  
-    overlay.innerHTML = ` <div class="overlayContent">
-                            <div class="pokeDesc" onclick="eventProtection(event)">
-                              <img class="overlayImg" src="${pokemonArr[pokemonIndex].sprites.other["official-artwork"].front_default}" alt="">
-                              <h6>${pokemonArr[pokemonIndex].name.toUpperCase()}</h6>
-                              <div class="typesContainer">
-                                <img class="types1" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${primaryType}.svg">
-                                ${secondaryTypeHTML}
-                              </div>
-                                <div id="dataNav">
-                                  <a class="traits">traits</a>
-                                  <a class="stats">stats</a>
-                                </div>
-                                <div id="pokeData">
-                                  <div class="pokeInfoQuestion">
-                                    <p>HP:</p>
-                                    <p>Attack:</p>
-                                    <p>Defense:</p>
-                                    <p>Sp-Attack:</p>
-                                    <p>Sp-Defense:</p>
-                                    <p>Speed:</p>
-                                  </div>
-                                  <div class="pokeInfoAnswer">
-                                    <p>${pokemonArr[pokemonIndex].stats[0].base_stat}</p>
-                                    <p>${pokemonArr[pokemonIndex].stats[1].base_stat}</p>
-                                    <p>${pokemonArr[pokemonIndex].stats[2].base_stat}</p>
-                                    <p>${pokemonArr[pokemonIndex].stats[3].base_stat}</p>
-                                    <p>${pokemonArr[pokemonIndex].stats[4].base_stat}</p>
-                                    <p>${pokemonArr[pokemonIndex].stats[5].base_stat}</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>`
-}
 
 console.log(pokemonArr)
