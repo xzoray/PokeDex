@@ -88,6 +88,7 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .toggleBtn {
@@ -101,7 +102,7 @@ input {
 
 .pokeDesc {
     width: 280px;
-    height: 595px;
+    height: 580px;
     background-image: url(img/pokemon-bg.jpg);
     display: flex;
     align-items: center;
@@ -152,6 +153,25 @@ h6 {
     border-bottom: 3px solid;
     margin-block-start: 1em;
     margin-block-end: 1em;
+}
+
+.buttonSection {
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+}
+
+.directionButton {
+    color: red;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    background-color: rgb(204, 204, 204);
+    cursor: pointer;
+}
+
+.directionButton:hover {
+    background-color: rgb(156, 156, 156);
 }
 
 .failedSearch {

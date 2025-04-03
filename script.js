@@ -69,7 +69,7 @@ function eventProtection(event) {
   event.stopPropagation();
 }
 
-function createPokemonOverlay1(pokemonIndex) {
+function createPokemonOverlay2(pokemonIndex) {
   const primaryType = pokemonArr[pokemonIndex].types[0].type.name;
   const secondaryTypeHTML = pokemonArr[pokemonIndex].types.length > 1 ? 
       `<img class="types2" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${pokemonArr[pokemonIndex].types[1].type.name}.svg" >` : '';
@@ -86,7 +86,7 @@ function createPokemonOverlay1(pokemonIndex) {
                               </div>
                                 <div id="dataNav">
                                   <a class="traits">traits</a>
-                                  <a class="stats" onclick="createPokemonOverlay2(${pokemonIndex})">stats</a>
+                                  <a class="stats" onclick="createPokemonOverlay1(${pokemonIndex})">stats</a>
                                 </div>
                                 <div id="pokeData">
                                   <div class="pokeInfoQuestion">
@@ -103,11 +103,17 @@ function createPokemonOverlay1(pokemonIndex) {
                                     ${pokemonAbility2}
                                   </div>
                                 </div>
+                              </div>
+                              <div class="buttonSection">
+                                <button onclick="moveBack(${pokemonIndex})" class="directionButton">&#171</button>
+                                <button onclick="moveForward(${pokemonIndex})" class="directionButton">&#187</button>
+                              </div>
                             </div>
-                          </div>`
+                          </div>
+                          `
 }
 
-function createPokemonOverlay2(pokemonIndex) {
+function createPokemonOverlay1(pokemonIndex) {
   const primaryType = pokemonArr[pokemonIndex].types[0].type.name;
   const secondaryTypeHTML = pokemonArr[pokemonIndex].types.length > 1 ? `<img class="types2" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${pokemonArr[pokemonIndex].types[1].type.name}.svg" >` : '';
   
@@ -120,7 +126,7 @@ function createPokemonOverlay2(pokemonIndex) {
                                 ${secondaryTypeHTML}
                               </div>
                                 <div id="dataNav">
-                                  <a onclick="createPokemonOverlay1(${pokemonIndex})" class="traits">traits</a>
+                                  <a onclick="createPokemonOverlay2(${pokemonIndex})" class="traits">traits</a>
                                   <a class="stats">stats</a>
                                 </div>
                                 <div id="pokeData">
@@ -141,8 +147,28 @@ function createPokemonOverlay2(pokemonIndex) {
                                     <p>${pokemonArr[pokemonIndex].stats[5].base_stat}</p>
                                 </div>
                               </div>
+                              <div class="buttonSection">
+                                <button onclick="moveBack(${pokemonIndex})" class="directionButton">&#171</button>
+                                <button onclick="moveForward(${pokemonIndex})" class="directionButton">&#187</button>
+                              </div>
                             </div>
                           </div>`
+}
+
+function moveBack(index) {
+  newIndex = index - 1;
+  if (newIndex < 0) {
+    newIndex = pokemonArr.length - 1;
+  }
+  createPokemonOverlay2(newIndex);
+}
+
+function moveForward(index) {
+  newIndex = index + 1;
+  if (newIndex > pokemonArr.length - 1) {
+    newIndex = 0;
+  }
+  createPokemonOverlay2(newIndex);
 }
 
 function loadingSpinner() {
