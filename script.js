@@ -92,7 +92,7 @@ function createPokemonOverlay2(pokemonIndex) {
                                   <div class="pokeInfoQuestion">
                                     <p>Height:</p>
                                     <p>Weight:</p>
-                                    <p>Base Experience:</p>
+                                    <p>Base Exp:</p>
                                     <p>Ability:</p>
                                   </div>
                                   <div class="pokeInfoAnswer">
