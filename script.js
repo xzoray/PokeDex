@@ -218,12 +218,10 @@ function searchPokemon(searchValue) {
 function renderFilteredPokemon(pokemonList) {
   const pokemonContainer = document.getElementById("content");
   pokemonContainer.innerHTML = "";
-
   if (pokemonList.length === 0) {
       pokemonContainer.innerHTML = `<p class="failedSearch">Keine Pokémon gefunden.</p>`;
       return;
   }
-
   pokemonList.forEach(pokemon => {
       const pokemonCard = document.createElement("div");
       pokemonCard.classList.add("poke-card");
@@ -240,8 +238,7 @@ function renderFilteredPokemon(pokemonList) {
             <img class="types1" src="https://cdn.jsdelivr.net/gh/partywhale/pokemon-type-icons@main/icons/${primaryType}.svg">
             ${secondaryTypeHTML}
           </div>
-        </div>
-      `;
+        </div>`;
       pokemonCard.addEventListener("click", function () {
           showPokemon(pokemon.id);
       });

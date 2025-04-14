@@ -23,6 +23,16 @@ header {
     z-index: 1;
 }
 
+.impressum {
+    color: white;
+    text-decoration: none;
+}
+
+.impressum:hover {
+    color: aquamarine;
+    text-decoration: underline;
+}
+
 #content {
     display: flex;
     flex-wrap: wrap;
@@ -186,7 +196,6 @@ h6 {
 
 footer {
     height: 100px;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -202,4 +211,16 @@ footer {
 
 .loadButton:hover {
     background-color: rgb(175, 4, 4);
+}
+
+@media (max-width: 550px) {
+    h1 {
+        display: none;
+    }
+}
+
+@media (max-width: 370px) {
+    header {
+        flex-direction: column;
+    }
 }
